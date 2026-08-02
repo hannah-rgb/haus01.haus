@@ -1,0 +1,414 @@
+/* ============================================================
+   project.css — real 12-column grid (margin 20, gap 15), a fixed
+   header pinned to the top of the viewport, and a fixed centered
+   "0/1" logo. No exact pixel positions anywhere — every image is
+   just a grid-column span of 4, 6, or 12.
+   ============================================================ */
+
+:root {
+  --grid-margin: 20px;
+  --grid-gap: 15px;
+}
+
+.project {
+  position: relative;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* ---- shared 12-column grid ---------------------------------------- */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+  width: 100%;
+  padding: 0 var(--grid-margin);
+}
+
+/* ---- fixed header: project name / category / brief+solution -------
+   Pinned to the top of the viewport (not the scrolling page), and
+   internally aligned to the same 12-column grid as the gallery. */
+.project__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  /* background: #fff; */
+  padding: 20px var(--grid-margin) 18px;
+}
+
+.project__header-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+.project__name {
+  grid-column: span 2;
+}
+
+.project__category {
+  grid-column: span 2;
+}
+
+.project_year {
+    grid-column: span 2;
+}
+
+.project__info {
+  grid-column: span 6;
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  column-gap: var(--grid-gap);
+  row-gap: 0px;
+  margin: 0;
+}
+
+.project__info-intro {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.project__info-label,
+.project__info-text,
+.project__info-intro {
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.project__info-label,
+.project__info-text {
+  margin: 0;
+}
+
+.project__info-label {
+  white-space: nowrap;
+}
+
+.project__info-text,
+.project__info-intro {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.project__name,
+.project__category,
+.project_year {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 13px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+/* ---- fixed logo, dead center of the viewport -----------------------
+   Acts as the home/logo button. Hover -> open a menu to jump between
+   categories. Position and appearance never change — it always stays
+   put, always black, regardless of whether the menu is open. */
+.site-logo-fixed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50; /* above the menu overlay so it stays hoverable/clickable */
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.15;
+  color: #000;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---- full-screen mega-menu, opened by hovering the logo -------------
+   80% opaque white (20% see-through), content anchored so its TOP
+   sits at the vertical middle of the screen — same height as the
+   fixed logo — and grows downward from there. Each label gets its
+   own tight black box, touching its neighbours with zero gap. */
+.site-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(255, 255, 255, 0.8);
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+
+.site-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.site-menu__grid {
+  position: absolute;
+  top: 50%;
+  left: var(--grid-margin);
+  right: var(--grid-margin);
+  height: 0; /* categories are absolutely positioned within this line */
+}
+
+/* The track holds THREE consecutive copies of the same 6 categories,
+   in the same fixed order, laid out left to right with static px
+   positions that never change. Sliding is done entirely by
+   translateX-ing the whole track — that's what makes the motion a
+   real leftward (or rightward) slide instead of a category
+   teleporting from column 1 to column 12. The duplicate copies are
+   what make the "next" category already sitting just off-screen,
+   ready to slide in, instead of popping in from nowhere. */
+.site-menu__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 500ms var(--ease, ease);
+  will-change: transform;
+}
+
+/* Each category is its OWN independent grid internally (header +
+   items + nested groups) — this is what stops an unrelated
+   category's tall wrapped title from forcing empty vertical space
+   into every other column. CSS Grid row tracks are shared across
+   an entire grid, so without this isolation, one long title
+   anywhere makes that row tall everywhere. */
+.site-menu__category {
+  position: absolute;
+  top: 0;
+  display: grid;
+  gap: 0;
+  align-items: start;
+  align-content: start;
+}
+
+/* top-level category label (About, Brand Identity, Graphic, ...) —
+   always fills its column, so it keeps touching the next column
+   with zero gap */
+.site-menu__category-title {
+  box-sizing: border-box;
+  display: block;
+  justify-self: stretch;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+}
+
+/* project items and group labels — sized to their own text, not
+   stretched to fill the column. Still capped so a very long title
+   can grow up to 2 columns wide rather than wrapping immediately. */
+.site-menu__item,
+.site-menu__group-title {
+  box-sizing: border-box;
+  display: block;
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+}
+
+/* group items start collapsed; opened by clicking their "> label",
+   and land directly under it (see project.js relayoutCategory) */
+.site-menu__item--nested {
+  display: none;
+}
+
+.site-menu__item--nested.is-open {
+  display: block;
+}
+
+.site-menu__category-title:hover,
+.site-menu__item:hover,
+.site-menu__group-title:hover {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+
+.site-menu__group-title[aria-expanded="true"] {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .site-menu__grid {
+    position: static;
+    padding: 20px var(--grid-margin);
+  }
+  .site-menu__track {
+    position: static;
+    transform: none !important;
+    transition: none;
+  }
+  .site-menu__category {
+    position: static !important;
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+  .site-menu__category:nth-child(n + 7) {
+    display: none;
+  }
+}
+
+
+/* ---- gallery: plain 12-col grid, each block spans 4 / 6 / 12 -------
+   Padding-top clears the fixed header; adjust --header-h if the
+   header's real height differs (JS sets this from the live header
+   element, so it stays correct even if content wraps). */
+.project__gallery {
+  margin-top: 32px;
+  background:#000;
+  /* padding: 20px */
+}
+
+.g-block {
+  position: relative;
+  overflow: hidden;
+}
+
+.g-block img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.g-span-4  { grid-column: span 4; }
+.g-span-6  { grid-column: span 6; }
+.g-span-12 { grid-column: span 12; }
+
+/* composite: a base image with a second image layered on top at a
+   given relative offset (still just one grid cell/span) */
+.g-block--composite .g-overlay {
+  position: absolute;
+  object-fit: cover;
+}
+
+.project__cta {
+  position: relative;
+  z-index: 2;
+  grid-column: span 12;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  background: #fff;
+  padding: 6px var(--grid-margin);
+}
+
+.project__cta-note {
+  max-width: 400px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 485;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--ink-muted);
+}
+
+.project__cta-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project__cta-links a {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink-muted);
+}
+
+.project__cta-links a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* simple reveal-on-scroll */
+.g-block {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease), transform 600ms var(--ease);
+}
+
+.g-block.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .g-block {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .project__name,
+  .project__category {
+    grid-column: span 4;
+  }
+  .project__info {
+    grid-column: span 12;
+    grid-template-columns: 1fr;
+  }
+  .g-span-4,
+  .g-span-6 {
+    grid-column: span 12;
+  }
+  .project__cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .project__cta-links {
+    align-items: flex-start;
+  }
+}

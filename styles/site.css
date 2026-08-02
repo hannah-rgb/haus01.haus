@@ -1,0 +1,151 @@
+/* ============================================================
+   site.css — shared across index.html (home) and every project page.
+   Fonts, color tokens, the fixed "0/1" logo, and the global footer
+   nav (About / Index) all live here so they only need to be
+   defined once and stay identical everywhere.
+   ============================================================ */
+
+/* ---- fonts --------------------------------------------------
+   These are the three families used across the Figma file:
+   Ufficio Mono, PP Neue Montreal Mono, Basel Grotesk Trial.
+   They're commercial/custom fonts — not on Google Fonts — so you
+   need to drop the licensed .woff2 files in /assets/fonts and
+   point these src paths at them. Until then the fallback stacks
+   keep everything readable. */
+@font-face {
+  font-family: "Ufficio Mono";
+  src: url("../assets/fonts/UfficioMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal Mono";
+  src: url("../assets/fonts/PPNeueMontrealMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basel Grotesk Trial";
+  src: url("../assets/fonts/BaselGroteskTrial-Book.woff2") format("woff2");
+  font-weight: 485;
+  font-display: swap;
+}
+
+:root {
+  --font-mono: "Ufficio Mono", "PP Neue Montreal Mono", "Courier New", monospace;
+  --font-body: "Basel Grotesk Trial", Arial, sans-serif;
+
+  --ink: #000000;
+  --ink-muted: #8d8d8d;
+  --paper: #ffffff;
+  --module-bg: #f9f9f9;
+
+  --duration: 520ms;
+  --ease: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --logo-left: 713px;
+  --logo-top: 505px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-body);
+}
+
+a {
+  color: inherit;
+}
+
+/* ---- fixed logo -----------------------------------------------
+   Identical position/behaviour on every page — stays pinned to
+   the viewport (not the scrolling page), matching the home page. */
+.site-logo {
+  position: fixed;
+  left: var(--logo-left);
+  top: var(--logo-top);
+  z-index: 50;
+  width: 15px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  text-align: center;
+  pointer-events: none;
+  color: var(--ink);
+  mix-blend-mode: difference;
+  filter: invert(1);
+}
+
+/* ---- global footer nav -----------------------------------------
+   The same About/Index pair (plus a one-line tagline) shown at the
+   bottom of the home page and every project page. */
+.site-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 20px 10px;
+  pointer-events: none;
+}
+
+.site-footer__tagline {
+  max-width: 347px;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 485;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--ink-muted);
+  pointer-events: auto;
+}
+
+.site-footer__nav {
+  display: flex;
+  gap: 353px; /* matches the About(492) / Index(845) spacing from the spec */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer__nav a {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.site-footer__nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .site-footer__nav {
+    gap: 32px;
+  }
+}

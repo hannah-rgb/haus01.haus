@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carnault — Brand Identity — 01 Studio</title>
+
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/project.css" />
+</head>
+<body>
+  <main class="project" id="project"></main>
+
+  <script src="/scripts/project.js"></script>
+  <script>
+    renderProject({
+      name: "Carnault",
+      category: "Brand Identity",
+      year: "2026",
+
+      info: {
+    intro:
+        "CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals.",
+
+    sections: [
+        {
+            label: "The Brief",
+            text: "CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals.CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals."
+        },
+        {
+            label: "Solution",
+            text: "CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals."
+        }
+    ]
+},
+
+      // Every block is just a grid span now (4 / 6 / 12) — no exact
+      // px positions. Replace every src with the real assets.
+      blocks: [
+        { type: "video", span: 12, src: "/assets/carnault/carnault-3d-artwork.webp", alt: "Carnault — product hero" },
+
+        // two span-6 blocks in a row = a side-by-side pair
+        { type: "image", span: 6, src: "/assets/carnault/package.png", alt: "Carnault starter set poster" },
+        { type: "image", span: 6, src: "/assets/carnault/logo.png", alt: "Carnault wordmark" },
+
+        // room/monitor photo with the screen content composited on top —
+        // left/top/width/height are now % of this block, not raw px
+        {
+          type: "composite",
+          span: 12,
+          base: { src: "/assets/carnault/place-holder.png", alt: "Carnault website mockup on a monitor" },
+          overlay: {
+            src: "/assets/carnault/place-holder.png",
+            alt: "Carnault website detail",
+            left: 30, top: 22, width: 43, height: 34
+          }
+        },
+
+        { type: "image", span: 12, src: "/assets/carnault/door.png", alt: "Carnault business card mockup" },
+        { type: "image", span: 12, src: "/assets/carnault/place-holder.png", alt: "Carnault NFC sign mockup" },
+        { type: "image", span: 12, src: "/assets/carnault/place-holder.png", alt: "Carnault brand guidelines book, isometric mockup" }
+      ],
+
+      footerNote: "From micro typography to flagship stores, having to deliver the exact value and message to the customer helps them to understand the brand and to stay loyal.",
+      footerLinks: [
+        { label: "About", href: "/#about" },
+        { label: "Full portfolio on request", href: "mailto:hello@01studio.com" }
+      ]
+    });
+  </script>
+</body>
+</html>
