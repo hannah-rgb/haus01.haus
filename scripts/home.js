@@ -66,7 +66,7 @@
 
     Identity: [
         { title: "Carnault", id: "carnault", href: "projects/carnault/", image: "assets/carnault.png", year: 2026, ready: true },
-        { title: "Architecture and Human Augmentation, ETH", id: "aha", href: "projects/aha/", image: "assets/aha.webp", year: 2025, ready: true },
+        { title: "Architecture and Human Augmentation, ETHZ", id: "aha", href: "projects/aha/", image: "assets/aha.webp", year: 2025, ready: true },
         { title: "Aramiko", id: "aramiko", href: "projects/aramiko/", image: "assets/aramiko.webp", year: 2025, ready: true },
         { title: "Museumsnacht Basel", id: "museumsnacht-basel", href: "projects/museumsnacht-basel/", image: "assets/museumsnacht-basel.webp", year: 2025, ready: true },
         { title: "Neueden", id: "neueden", href: "projects/neueden/", image: "assets/neueden.webp", year: 2024 },

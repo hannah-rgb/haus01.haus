@@ -19,7 +19,9 @@ const SITE_MENU = [
     items: [
       { label: "Carnault", href: "/projects/carnault/" },
       { label: "Musuemsnacht Basel", href: "/projects/museumsnacht-basel/" },
-      { label: "Neueden", href: "/projects/neueden/" },
+      { label: "Aramiko", href: "/projects/aramiko/" },
+      { label: "Architecture and Human Augmentation ETH Zürich", href: "/projects/aha/" },  
+      { label: "Neueden"},
       { label: "Mach Schwarz", href: "/projects/mach-schwarz/" }
     ]
   },
@@ -29,11 +31,10 @@ const SITE_MENU = [
     href: "/#website",
     width: 3, // header + items + room for the wide item to expand into
     items: [
-      { label: "Architecture and Human Augmentation ETH Zürich", href: "/projects/architecture-human-augmentation/", wide: true },
-      { label: "Carnault", href: "/projects/carnault/" },
-      { label: "Aramiko", href: "/projects/aramiko/" },
-      { label: "0pen:sense", href: "/projects/opensense/" },
-      { label: "Archive 2025", href: "/projects/archive-2025/" }
+      { label: "Architecture and Human Augmentation ETH Zürich" },
+      { label: "Carnault"},
+      { label: "0pen:sense"},
+      { label: "Archive 2025"}
     ]
   },
 
@@ -42,29 +43,29 @@ const SITE_MENU = [
     href: "/#graphic",
     width: 3, // header + direct items/group-labels + one nested level
     items: [
-      { label: "Kunstraum Baden", href: "/projects/kunstraum-baden/" },
-      { label: "Regionale 2025 Haus Elektronisch Kunst Basel", href: "/projects/regionale-2025/", wide: true }
+      { label: "Kunstraum Baden"},
+      { label: "Regionale 2025 Haus Elektronisch Kunst Basel"}
     ],
     groups: [
       {
         label: "> Type design/lettering",
         items: [
-          { label: "Humanico", href: "/projects/humanico/" },
-          { label: "Alima Markt", href: "/projects/alima-markt/" },
-          { label: "Negroni Kabar", href: "/projects/negroni-kabar/" },
-          { label: "Shake Shack KR", href: "/projects/shake-shack-kr/" },
-          { label: "Flower KR", href: "/projects/flower-kr/" },
-          { label: "2025 Blu Snake", href: "/projects/blu-snake/" },
-          { label: "2026 Red Horse", href: "/projects/red-horse/" }
+          { label: "Humanico"},
+          { label: "Alima Markt"},
+          { label: "Negroni Kabar"},
+          { label: "Shake Shack KR"},
+          { label: "Flower KR"},
+          { label: "2025 Blu Snake"},
+          { label: "2026 Red Horse"}
         ]
       },
       {
         label: "> Media experiments",
         items: [
-          { label: "Interactive Swiss Posters", href: "/projects/interactive-swiss-posters/" },
-          { label: "Clock Poster", href: "/projects/clock-poster/" },
-          { label: "Park Here", href: "/projects/park-here/" },
-          { label: "Throw, Break, Decode", href: "/projects/throw-break-decode/" }
+          { label: "Interactive Swiss Posters"},
+          { label: "Clock Poster"},
+          { label: "Park Here"},
+          { label: "Throw, Break, Decode"}
         ]
       }
     ]
@@ -75,11 +76,11 @@ const SITE_MENU = [
     href: "/#research",
     width: 2,
     items: [
-      { label: "Post Poster", href: "/projects/post-poster/" },
-      { label: "About Publishing", href: "/projects/about-publishing/" },
-      { label: "Tracing the Arc", href: "/projects/tracing-the-arc/" },
-      { label: "Brutalist Photobooth", href: "/projects/brutalist-photobooth/" },
-      { label: "CMDS", href: "/projects/cmds/" }
+      { label: "Post Poster"},
+      { label: "About Publishing"},
+      { label: "Tracing the Arc"},
+      { label: "Brutalist Photobooth"},
+      { label: "CMDS"}
     ]
   },
 
@@ -89,7 +90,18 @@ const SITE_MENU = [
 function menuLink(className, item) {
   const a = document.createElement("a");
   a.className = className;
-  a.href = item.href || "#";
+
+  if (item.href) {
+    a.href = item.href;
+  } else {
+    // no real page yet — grey, non-interactive, instead of the
+    // normal black tag treatment
+    a.href = "#";
+    a.classList.add("is-unready");
+    a.setAttribute("aria-disabled", "true");
+    a.addEventListener("click", (e) => e.preventDefault());
+  }
+
   a.textContent = item.label;
   return a;
 }
@@ -487,4 +499,3 @@ function renderProject(data) {
     revealables.forEach((el) => el.classList.add("is-visible"));
   }
 }
-

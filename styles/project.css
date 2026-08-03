@@ -270,6 +270,23 @@
   outline: none;
 }
 
+/* no real page yet (menuLink() left off href) — grey text, no box,
+   no hover invert, not actually clickable */
+.site-menu__category-title.is-unready,
+.site-menu__item.is-unready,
+.site-menu__group-title.is-unready {
+  background: transparent;
+  color: var(--ink-muted, #8d8d8d);
+  cursor: default;
+}
+
+.site-menu__category-title.is-unready:hover,
+.site-menu__item.is-unready:hover,
+.site-menu__group-title.is-unready:hover {
+  background: transparent;
+  color: var(--ink-muted, #8d8d8d);
+}
+
 @media (max-width: 900px) {
   .site-menu__grid {
     position: static;
