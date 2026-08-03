@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museumsnacht Basel</title>
+
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/project.css" />
+</head>
+<body>
+  <main class="project" id="project"></main>
+
+  <script src="/scripts/project.js"></script>
+  <script>
+    renderProject({
+      name: "Museumsnacht Basel",
+      category: "Cultural Event Identity",
+      year: "2025",
+
+      info: {
+    intro:
+        "Museumsnacht is an annual Museum festival in Basel, Switzerland. Every year, it is becoming a culture of Basel where everyone from kids to adults come out on the street and freely experience diverse workshops and exhibitions curated by local museums. ",
+
+    sections: [
+        {
+            label: "Art Direction",
+            text: "Including Identity, motion graphics, and poster design"
+        }
+        // {
+        //     label: "Participation",
+        //     text: "Corporate Identity Application Design"
+        // }
+    ]
+},
+
+      // Every block is just a grid span now (4 / 6 / 12) — no exact
+      // px positions. Replace every src with the real assets.
+      blocks: [
+        { type: "video", span: 12, src: "/assets/museumsnacht-basel/clip2.webp", alt: "Museumsnacht Basel — Poster series" },
+
+        // two span-6 blocks in a row = a side-by-side pair
+        { type: "image", span: 6, src: "/assets/museumsnacht-basel/logoplay.webp", alt: "Museumsnacht Basel starter set poster" },
+        { type: "image", span: 6, src: "/assets/museumsnacht-basel/img6.webp", alt: "Museumsnacht Basel wordmark" },
+
+        // room/monitor photo with the screen content composited on top —
+        // left/top/width/height are now % of this block, not raw px
+        {
+          type: "composite",
+          span: 12,
+          base: { src: "/assets/museumsnacht-basel/img1.webp", alt: "Museumsnacht Basel website mockup on a monitor" }
+        },
+
+        { type: "image", span: 6, src: "/assets/museumsnacht-basel/clip1.webp", alt: "Museumsnacht Basel business card mockup" },
+        { type: "image", span: 12, src: "/assets/museumsnacht-basel/clip3.webp", alt: "Museumsnacht Basel NFC sign mockup" },
+         { type: "placeholder", span: 6 },
+         { type: "image", span: 6, src: "/assets/museumsnacht-basel/img8.webp", alt: "Museumsnacht Basel business card mockup" },
+        { type: "image", span: 12, src: "/assets/museumsnacht-basel/img7.webp", alt: "Museumsnacht Basel brand guidelines book, isometric mockup" }
+      ],
+
+      footerNote: "From micro typography to flagship stores, having to deliver the exact value and message to the customer helps them to understand the brand and to stay loyal.",
+      footerLinks: [
+        // { label: "About", href: "/#about" },
+        { label: "Full portfolio on request", href: "mailto:hello@01studio.com" }
+      ]
+    });
+  </script>
+</body>
+</html>

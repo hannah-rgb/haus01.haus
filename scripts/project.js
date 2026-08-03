@@ -487,3 +487,4 @@ function renderProject(data) {
     revealables.forEach((el) => el.classList.add("is-visible"));
   }
 }
+

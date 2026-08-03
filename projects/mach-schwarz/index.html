@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mach Schwarz</title>
+
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/project.css" />
+</head>
+<body>
+  <main class="project" id="project"></main>
+
+  <script src="/scripts/project.js"></script>
+  <script>
+    renderProject({
+      name: "Mach Schwarz",
+      category: "Brand Identity",
+      year: "2025",
+
+      info: {
+    intro:
+        "MACH SCHWARZ is a new Swiss coffee brand, born from the absence of truly pure, unadulterated black coffee—free from sugar or additives—on the market. The brand identity and packaging were designed around this idea, with the name itself meaning “just black.” The visual language takes inspiration from the golden gradient foam that appears on freshly brewed coffee, translating this subtle richness into its design. Beginning in 2026, Mach Schwarz will be available in convenience stores and supermarkets across Switzerland, Germany, France, and Italy.",
+
+    // sections: [
+    //     {
+    //         label: "The Brief",
+    //         text: "CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals.CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals."
+    //     },
+    //     {
+    //         label: "Solution",
+    //         text: "CARNAULT is a Luxury E-cigarette brand that aims to deliver a sophisticated indulgence in modern rituals."
+    //     }
+    // ]
+},
+
+      // Every block is just a grid span now (4 / 6 / 12) — no exact
+      // px positions. Replace every src with the real assets.
+      blocks: [
+        { type: "image", span: 12, src: "/assets/mach-schwarz/img6.webp", alt: "Mach Schwarz — product hero" },
+
+        // two span-6 blocks in a row = a side-by-side pair
+        { type: "image", span: 6, src: "/assets/mach-schwarz/package.webp", alt: "Mach Schwarz starter set poster" },
+        { type: "image", span: 6, src: "/assets/mach-schwarz/sign.webp", alt: "Mach Schwarz wordmark" },
+
+        // room/monitor photo with the screen content composited on top —
+        // left/top/width/height are now % of this block, not raw px
+        {
+          type: "composite",
+          span: 12,
+          base: { src: "/assets/mach-schwarz/img4.webp", alt: "Mach Schwarz website mockup on a monitor" },
+        },
+
+        { type: "image", span: 12, src: "/assets/mach-schwarz/img1.webp", alt: "Mach Schwarz business card mockup" }
+      ],
+
+      footerNote: "From micro typography to flagship stores, having to deliver the exact value and message to the customer helps them to understand the brand and to stay loyal.",
+      footerLinks: [
+        { label: "About", href: "/#about" },
+        { label: "Full portfolio on request", href: "mailto:hello@01studio.com" }
+      ]
+    });
+  </script>
+</body>
+</html>

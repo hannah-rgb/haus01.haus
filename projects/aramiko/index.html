@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aramiko — Corporate Identity</title>
+
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/project.css" />
+</head>
+<body>
+  <main class="project" id="project"></main>
+
+  <script src="/scripts/project.js"></script>
+  <script>
+    renderProject({
+      name: "aramiko",
+      category: "Corporate Identity",
+      year: "2026",
+
+      info: {
+    intro:
+        "aramiko is an AI-powered platform with Swiss database that provides safest security for corporates and organizations. The platform is designed to help businesses and organizations protect their sensitive data and information from cyber threats and attacks.",
+
+    sections: [
+        {
+            label: "Art Direction",
+            text: "Skala Design"
+        },
+        {
+            label: "Participation",
+            text: "Corporate Identity, Application Design"
+        }
+    ]
+},
+
+      // Every block is just a grid span now (4 / 6 / 12) — no exact
+      // px positions. Replace every src with the real assets.
+      blocks: [
+        { type: "image", span: 12, src: "/assets/aramiko/aramiko.webp", alt: "Aramiko — product hero" },
+
+        // two span-6 blocks in a row = a side-by-side pair
+        { type: "image", span: 6, src: "/assets/aramiko/page.webp", alt: "Aramiko starter set poster" },
+        { type: "image", span: 6, src: "/assets/aramiko/business-card.png", alt: "Aramiko wordmark" },
+
+        // room/monitor photo with the screen content composited on top —
+        // left/top/width/height are now % of this block, not raw px
+        { type: "image", span: 6, src: "/assets/aramiko/logo.png", alt: "Aramiko wordmark" },
+        {type: "image", span: 6, src: "/assets/aramiko/bottle.png", alt: "Aramiko website mockup on a monitor" },
+        { type: "image", span: 12, src: "/assets/aramiko/icons.png", alt: "Aramiko business card mockup" },
+        { type: "image", span: 12, src: "/assets/aramiko/place-holder.png", alt: "Aramiko NFC sign mockup" },
+        { type: "image", span: 12, src: "/assets/aramiko/place-holder.png", alt: "Aramiko brand guidelines book, isometric mockup" }
+      ],
+
+      footerNote: "From micro typography to flagship stores, having to deliver the exact value and message to the customer helps them to understand the brand and to stay loyal.",
+      footerLinks: [
+        { label: "About", href: "/#about" },
+        { label: "Full portfolio on request", href: "mailto:hello@01studio.com" }
+      ]
+    });
+  </script>
+</body>
+</html>
