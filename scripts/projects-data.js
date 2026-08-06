@@ -24,7 +24,7 @@ const projectsByModule = {
 
   Graphics: [
     { title: "Kunstraum Baden", id: "kunstraum-baden", href: "projects/kunstraum-baden/", image: "assets/kunstraum-baden.webp", year: 2025 },
-    { title: "Regionale 26", id: "regionale-26", href: "projects/regionale-26/", image: "assets/regionale-26.webp", year: 2026, ready: true },
+    { title: "Regionale 26", id: "regionale-25", href: "projects/regionale-25/", image: "assets/regionale-25.webp", year: 2026, ready: true },
     { title: "Humanico", id: "humanico", href: "projects/humanico/", image: "assets/humanico.webp", year: 2024 }
   ],
 

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Regionale 25 HEK(Haus of Electroniches Kunst)</title>
+
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/project.css" />
+</head>
+<body>
+  <main class="project" id="project"></main>
+
+  <script src="/scripts/project.js"></script>
+  <script>
+    renderProject({
+      name: "Regionale 25 HEK",
+      category: "Exhibition Poster",
+      year: "2025",
+
+      info: {
+    intro:
+        "The Regionale is an annual exhibition project for contemporary art in the Basel region, Alsace and southern Baden. HEK(Haus of Electroniches Kunst) is a museum in Basel, Switzerland, that focuses on the intersection of art and technology.",
+
+    sections: [
+        {
+            label: "The Brief",
+            text: "HEk needed a poster for Échappée Belle that reflects the exhibition's exploration of escaping technology-driven society by reimagining the relationship between digital systems, nature, and human perception."
+        },
+        {
+            label: "Solution",
+            text: "A machine-learning-driven animated poster combines gesture recognition, 3D typography, glitch, and motion design An animated poster portrays a modern individual absorbed in a smartphone while a continuously pressed ESC key symbolizes the desire to break free, as machine-learning recognition windows reveal the perspectives of the exhibition's 13 artists, turning digital technology itself into a poetic pathway for escape."
+        }
+    ]
+},
+
+      // Every block is just a grid span now (4 / 6 / 12) — no exact
+      // px positions. Replace every src with the real assets.
+      blocks: [
+        { type: "video", span: 6, src: "/assets/regionale-25/clip1.webp", alt: "Regionale 25 — product hero" },
+        { type: "image", span: 6, src: "/assets/regionale-25/empty.png", alt: "Regionale 25 wordmark" },
+        { type: "image", span: 12, src: "/assets/regionale-25/img7.webp", alt: "Regionale 25 starter set poster" },
+        { type: "image", span: 6, src: "/assets/regionale-25/img4.webp", alt: "Regionale 25 starter set poster" },
+        { type: "image", span: 6, src: "/assets/regionale-25/img4-2.webp", alt: "Regionale 25 starter set poster" },
+        { type: "image", span: 12, src: "/assets/regionale-25/img2.webp", alt: "Regionale 25 starter set poster" },
+        { type: "image", span: 6, src: "/assets/regionale-25/empty.png", alt: "Regionale 25 wordmark" },
+        { type: "image", span: 6, src: "/assets/regionale-25/img5.webp", alt: "Regionale 25 starter set poster" },
+                { type: "image", span: 12, src: "/assets/regionale-25/img3.webp", alt: "Regionale 25 starter set poster" },
+        { type: "image", span: 6, src: "/assets/regionale-25/img1.webp", alt: "Regionale 25 wordmark" },
+      ],
+
+      footerNote: "From micro typography to flagship stores, having to deliver the exact value and message to the customer helps them to understand the brand and to stay loyal.",
+      footerLinks: [
+        { label: "About", href: "/#about" },
+        { label: "Full portfolio on request", href: "mailto:hello@01studio.com" }
+      ]
+    });
+  </script>
+</body>
+</html>
